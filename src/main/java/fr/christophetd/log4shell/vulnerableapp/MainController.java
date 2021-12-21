@@ -18,5 +18,11 @@ public class MainController {
         logger.info("Received a request for API version " + apiVersion);
         return "Hello, world!";
     }
+    
+    @GetMapping("/testParams")
+    public String binder(@RequestParam("username") String username) {
+        logger.info("Received a get request for username " + username);
+        return "Hello, world 2.0!";
+    }
 
 }
