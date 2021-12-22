@@ -12,11 +12,15 @@ import org.apache.logging.log4j.Logger;
 public class MainController {
 
     private static final Logger logger = LogManager.getLogger("HelloWorld");
-
+    @GetMapping("/nice_page")
+    public String index(@RequestHeader("User-Agent") String user_agent) {
+        logger.info("User-Agent = " + user_agent);
+        return "Hello, Visitors!<BR><a href='/testParams?username=frank'>Click Here if your name is Frank</a>";
+    }
     @GetMapping("/")
     public String index(@RequestHeader("X-Api-Version") String apiVersion) {
         logger.info("Received a request for API version " + apiVersion);
-        return "Hello, world!";
+        return "Hello, world!<BR><a href='/testParams?username=frank'>Click Here</a>";
     }
     
     @GetMapping("/testParams")
